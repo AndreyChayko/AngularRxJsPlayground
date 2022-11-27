@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FakeGeneratorService } from '../../../shared/services/fake-generator.service';
-import { fromEvent, map, Observable } from 'rxjs';
+import {
+  animationFrameScheduler,
+  fromEvent,
+  map,
+  Observable,
+  observeOn,
+} from 'rxjs';
 import { calculateScrollPercent } from './helpers';
 
 @Component({
@@ -15,7 +21,9 @@ export class RxJsBasicsComponent implements OnInit {
 
   constructor(private fakeGenerator: FakeGeneratorService) {
     this.text = fakeGenerator.generateBigText();
-    this.scrollEvent$ = fromEvent(document, 'scroll');
+    this.scrollEvent$ = fromEvent(document, 'scroll').pipe(
+      observeOn(animationFrameScheduler)
+    );
     this.progress$ = this.scrollEvent$.pipe(
       map(({ target }) =>
         calculateScrollPercent((<Document>target).documentElement)

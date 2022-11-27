@@ -1,0 +1,7 @@
+<div class="counter">
+  <span class="fa fa-star"></span>
+  <span *ngrxLet="counter$ as value"> {{ value }}</span>
+  <span class="value">{{ action$ | async }}</span>
+  <button (click)="up()">Up</button>
+  <button (click)="down()">Down</button>
+</div>
