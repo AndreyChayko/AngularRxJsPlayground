@@ -1,7 +1,14 @@
 <div class="counter">
-  <span class="fa fa-star"></span>
-  <span *ngrxLet="counter$ as value"> {{ value }}</span>
-  <span class="value">{{ action$ | async }}</span>
+  <ng-container class="value" *rxLet="action$; let action">{{
+    action
+  }}</ng-container>
+
+  <ng-container *rxLet="interval$ as interval"> {{ interval }}</ng-container>
   <button (click)="up()">Up</button>
   <button (click)="down()">Down</button>
 </div>
+
+<app-rating-stars
+  [numberOfStars]="10"
+  (ratingChange)="onRatingChanged($event)"
+></app-rating-stars>

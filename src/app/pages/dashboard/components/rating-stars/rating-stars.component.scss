@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-basis: fit-content;
+  gap: 0.3rem;
+
+  > .star {
+    cursor: pointer;
+    &:hover {
+      color: orange;
+      ~ {
+        .star {
+          color: orange;
+        }
+      }
+    }
+  }
+  > .star.checked {
+    color: orange;
+    ~ {
+      .star {
+        color: orange;
+      }
+    }
+  }
+}

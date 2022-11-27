@@ -1,3 +1,8 @@
 <div class="rating">
-  <span class="star"></span>
+  <i
+    (click)="onStarClick(i)"
+    *ngFor="let star of stars; let i = index"
+    [ngClass]="selectedIndex === i ? 'checked' : ''"
+    class="star fas fa-star"
+  ></i>
 </div>

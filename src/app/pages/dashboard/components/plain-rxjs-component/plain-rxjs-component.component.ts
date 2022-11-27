@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { interval, map, Observable, scan, startWith, Subject, tap } from 'rxjs';
+import { interval, map, Observable, scan, startWith, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-plain-rxjs-component',
@@ -10,8 +10,7 @@ import { interval, map, Observable, scan, startWith, Subject, tap } from 'rxjs';
 export class PlainRxjsComponentComponent implements OnInit {
   click$$ = new Subject<boolean>();
   action$: Observable<number>;
-  counter$: Observable<number>;
-  counter: number = 0;
+  interval$: Observable<number>;
 
   constructor() {
     this.action$ = this.click$$.pipe(
@@ -20,9 +19,7 @@ export class PlainRxjsComponentComponent implements OnInit {
       scan((acc, value) => acc + value, 0)
     );
 
-    this.counter$ = interval(1000).pipe(
-      tap(() => console.log('emission occurred'))
-    );
+    this.interval$ = interval(1000);
   }
 
   ngOnInit(): void {}
@@ -33,5 +30,9 @@ export class PlainRxjsComponentComponent implements OnInit {
 
   down() {
     this.click$$.next(false);
+  }
+
+  onRatingChanged(rating: number) {
+    console.log(rating);
   }
 }

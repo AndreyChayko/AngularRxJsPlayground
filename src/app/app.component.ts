@@ -15,4 +15,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
+
+  logChangedDetection() {
+    console.log('AppComponent change detection');
+    return true;
+  }
 }
